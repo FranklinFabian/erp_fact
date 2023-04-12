@@ -1,0 +1,90 @@
+.autocomplete {
+    position: relative;
+    width: 100%;
+}
+.autocomplete * {
+    box-sizing: border-box;
+}
+.autocomplete__box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 5px;
+}
+.autocomplete__searching {
+    border-radius: 3px 3px 0 0;
+}
+.autocomplete__inputs {
+    flex-grow: 1;
+    padding: 0 5px;
+}
+.autocomplete__inputs input {
+    width: 100%;
+    border: 0;
+}
+.autocomplete__inputs input:focus {
+    outline: none;
+}
+.autocomplete--clear {
+    cursor: pointer;
+}
+.autocomplete__results {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.autocomplete__results__item--error {
+    color: #f00;
+}
+.autocomplete__results__item {
+    padding: 7px 10px;
+    cursor: pointer;
+}
+.autocomplete__results__item:hover {
+    background: rgba(0,180,255,0.075);
+}
+.autocomplete__results__item.autocomplete__selected {
+    background: rgba(0,180,255,0.15);
+}
+.autocomplete__icon {
+    height: 14px;
+    width: 14px;
+}
+.animate-spin {
+    animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-o-keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

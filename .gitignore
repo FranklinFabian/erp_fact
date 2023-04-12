@@ -1,0 +1,60 @@
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+
+application/ci_sessions/*
+!application/ci_sessions/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+/assets/dbimport/*.sql
+!/assets/dbimport/index.html
+/assets/data/backup/*.sql
+/assets/data/incoming/*.sql
+/assets/data/outgoing/*.sql
+/assets/data/pdf/invoice/*.pdf
+/assets/data/pdf/*.pdf
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
+
+# Uploads
+uploads/tasas_cambio/*
+!uploads/tasas_cambio/formato_tasas_de_cambio_cofi.xlsx
+uploads/appmovil/*
+
+# Server settings
+.env
+
+# Data .json
+/my-assets/js/admin_js/json/user.json
+
+# Logos
+/my-assets/image/qr/*
+/my-assets/image/logo/*
+/assets/logos/*
+error_log
+/assets/dist/img/*

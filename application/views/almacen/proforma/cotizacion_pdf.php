@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Proforma</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: none; /*ocultar líneas de la tabla*/
+        }
+        table, th, td {
+            border: none; /*ocultar líneas de las celdas*/
+            padding: 5px;
+        }
+        th {
+            background-color: #ddd;
+        }
+
+        td {
+            padding: 5px;
+        }
+        table td {
+            font-size: 8px; /* ajustar el tamaño de letra según sea necesario */
+        }
+
+
+    </style>
+</head>
+<body>
+<header style="padding: 20px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="width: 50%; display: flex; align-items: center; border: none;">
+                <img src="assets/logos/logo-mini.png" alt="Logo" height="50px">
+                <div style="margin-left: 10px;">
+                    <h1 style="font-size: 10px; margin: 0; font-weight: bold;">ELFEDECH S.A.</h1>
+                    <p style="font-size: 6px; margin: 0;">EMPRESA DE LUZ Y FUERZA ELECTRICA DE CHALLAPATA S.A.</p>
+                </div>
+            </td>
+            <td style="width: 50%; text-align: right; border: none;">
+                <p style="font-size: 8px; margin: 0;">Fecha: <?php echo date('d/m/Y'); ?></p>
+                <p style="font-size: 8px; margin: 0;">Hora: <?php echo date('H:i:s'); ?></p>
+            </td>
+        </tr>
+    </table>
+</header>
+
+
+
+
+<div style="text-align:center; margin-top: 20px; margin-bottom: 20px;">
+    <h4>PROFORMA DE VENTA DE MATERIALES</h4>
+</div>
+
+<table>
+    <tr>
+        <td>Cliente:</td>
+        <td><?php echo $cabecera[0]['razon_social']; ?></td>
+    </tr>
+
+   <!-- <tr>
+        <td>Tipo de documento:</td>
+        <td><?php echo $cabecera[0]['nombre'] ; ?></td>
+    </tr>-->
+
+    <?php if (!empty($cabecera[0]['nit'])) { ?>
+        <tr>
+            <td>NIT:</td>
+            <td><?php echo $cabecera[0]['nit']; ?></td>
+        </tr>
+    <?php } ?>
+
+
+</table>
+
+
+<div style="height: 20px;"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Subtotal</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <?php
+    $totalg = 0;
+    $contador = 0; // inicializar contador a cero
+    foreach ($detalles as $detalle) : ?>
+        <tr>
+            <td><?php echo ++$contador; ?></td> <!-- incrementar y mostrar contador -->
+            <td><?php echo $detalle['nombre']; ?></td>
+            <td><?php echo $detalle['cantidad']; ?></td>
+            <td><?php echo $detalle['costo']; ?></td>
+            <td><?php echo $detalle['total']; ?></td>
+            <?php $totalg += $detalle['total']; ?>
+        </tr>
+
+    <?php endforeach; ?>
+    </tbody>
+    <tr>
+        <td colspan="4" align="right"><strong>Total Venta:</strong></td>
+        <td align="right">Bs.<?php echo number_format($totalg, 2); ?></td>
+    </tr>
+
+
+</table>
+
+<div style="height: 20px;"></div>
+
+<table style="width: 100%; margin-top: 30px;">
+
+    <tr>
+        <td style="height: 80px;"></td>
+        <td style="height: 80px;"></td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            Responsable ELFEDECH
+		</td>
+        <td style="text-align: center;">
+            Interesado
+        </td>
+    </tr>
+</table>
+
+<!--<div style="margin-top: 20px;">
+    <strong>Observaciones:</strong><br>
+    {cabecera.observaciones}
+</div>-->
+</body>
+</html>

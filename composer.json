@@ -1,0 +1,21 @@
+{
+	"description": "Progreso ERP",
+	"name": "progreso/erp",
+	"type": "project",
+	"homepage": "https://progreso-cgroup.com",
+	"license": "Progreso @2022",
+	"require": {
+		"php": ">=7.0",
+		"chriskacerguis/codeigniter-restserver": "^3.1",
+		"illuminate/database": "^5.5",
+		"guzzlehttp/guzzle": "^6.3",
+		"phpoffice/phpspreadsheet": "^1.15"
+	},
+	"require-dev": {
+		"phenx/php-font-lib": "0.2.*",
+		"dompdf/dompdf" : "0.6.*"
+	},
+	"config": {
+		"platform-check": false
+	}
+}

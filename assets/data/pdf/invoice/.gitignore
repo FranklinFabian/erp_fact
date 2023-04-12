@@ -1,0 +1,6 @@
+# Ignorar todos los ficheros...
+*.pdf
+
+# ...excepto el fichero .gitignore
+!invoice/.gitignore
+!.gitignore

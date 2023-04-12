@@ -1,0 +1,61 @@
+<?php $csrf = array('name' => $this->security->get_csrf_token_name(),'hash' => $this->security->get_csrf_hash());?>
+
+<div class="header">
+  <span class="titulo_pagina">PROCESAR - REPOSICIONES</span>
+</div>
+<p></p>
+<div class="content">
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-3"><p style="margin:5px 20px 5px 20px"><a href="<?php echo base_url();?>orden_servicio/lista/" class="pure-button button-secondary" style="width:100%;">Volver atras</a></p></div>
+    </div>
+
+    <div>
+      <table style="margin-top: -1em;">
+        <?php
+          if($idservicio==1)
+            echo '<caption>SERVICIO ELECTRICO</caption>';
+          else 
+            echo '<caption>SERVICIO TV CABLE</caption>';
+          ?>
+        
+        <thead>
+          <tr>
+            <th>Nro. Reposición</th>
+            <th>Servicio</th>
+            <th>Fecha pago</th>
+            <th>Razón</th>
+            <th>Zona/Calle</th>
+            <th>Estado</th>
+            <th>Procesar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($reposiciones as $key => $value){
+            $corte = $this->cortes_model->get_corte($value['idcorte']);
+            $servicio = $this->servicios_model->get_servicio($value['idservicio']);
+            $abonado = $this->abonados_model->get_abonado($corte['idabonado']);
+            $cliente = $this->cliente_model->get_cliente($abonado['idcliente']);
+            $calle = $this->calles_model->get_calle($abonado['idcalle']);
+            echo '
+              <tr>
+                <td>'.($value['numero']).'</td>
+                <td>'.($servicio['descripcion']).'</td>
+                <td>'.($value['fecha_pago']).'</td>
+                <td>'.($cliente['razon_social']).'</td>
+                <td>'.$calle['calle'].' #'.$abonado['numero']. '</td>
+                <td>'.$value['estado']. '</td>';
+                if($idservicio==1)
+                  echo ' <td> <a class="button-xsmall pure-button pure-button-primary" href="'.base_url().'orden_servicio/procesar_la_reposicion/1/'.$value['idreposicion'].'">Procesar</button></td>';
+                else
+                  echo ' <td> <a class="button-xsmall pure-button pure-button-primary" href="'.base_url().'orden_servicio/procesar_la_reposicion/2/'.$value['idreposicion'].'">Procesar</button></td>';
+            echo '</tr>';
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script>
+</script>

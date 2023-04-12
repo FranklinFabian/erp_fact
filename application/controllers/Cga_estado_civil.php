@@ -1,0 +1,70 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Cga_estado_civil extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->db->query('SET SESSION sql_mode = ""');
+        $this->load->library('auth');
+        $this->load->library('lga_estado_civil');
+        $this->load->library('session');
+        $this->load->model('Mga_Estados_civiles');
+        $this->auth->check_admin_auth();
+    }
+
+    public function index() {
+        $content = $this->lga_estado_civil->add_form();
+        $this->template->full_admin_html_view($content);
+    }
+
+    public function insert() {
+        $data = array(
+            'nombre' => $this->input->post('nombre'),
+            'descripcion' => $this->input->post('descripcion')
+        );
+
+        $result = $this->Mga_Estados_civiles->insert($data);
+
+        if ($result == TRUE) {
+            $this->session->set_userdata(array('message' => display('successfully_added')));
+            redirect(base_url('Cga_estado_civil'));
+
+        } else {
+            $this->session->set_userdata(array('error_message' => display('already_inserted')));
+            redirect(base_url('Cga_estado_civil'));
+        }
+    }
+
+    public function update_form($id) {
+        $content = $this->lga_estado_civil->editable_data($id);
+        $this->template->full_admin_html_view($content);
+    }
+
+    public function update() {
+        $id = $this->input->post('id');
+        $data = array(
+            'nombre' => $this->input->post('nombre'),
+            'descripcion'    => $this->input->post('descripcion')
+        );
+        $this->Mga_Estados_civiles->update($data, $id);
+        $this->session->set_userdata(array('message' => display('successfully_added')));
+        redirect(base_url('Cga_estado_civil'));
+    }
+
+    public function delete($id) {
+        $this->db->db_debug = FALSE;
+        $this->db->where('id', $id);
+        $this->db->delete('ga_estado_civil');
+        if ( $this->db->error()['code'] == 0 ){
+            $this->session->set_userdata(array('message' => display('successfully_delete')));
+        }else{
+            $this->session->set_userdata(array('error_message' => 'Este registro no puede ser eliminado debido a que fue utilizado en uno o mas formularios'));
+        }
+
+        redirect(base_url('Cga_estado_civil'));
+    }
+
+}
